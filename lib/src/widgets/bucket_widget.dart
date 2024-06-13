@@ -128,7 +128,7 @@ class BucketState extends ComponentState<Bucket> {
                       )))),
           Observer(
               of: _childPosition,
-              child: (_) => AnimatedPositioned(
+              builder: (_) => AnimatedPositioned(
                   duration: Duration(milliseconds: 200),
                   top: _childPosition.value.y,
                   left: _childPosition.value.x,

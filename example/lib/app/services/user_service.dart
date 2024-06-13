@@ -1,5 +1,6 @@
+import 'package:karee/annotations.dart';
+
 import '../entities/pageable.dart';
-import 'package:karee_inject/karee_inject.dart';
 
 @Service
 class UserService {

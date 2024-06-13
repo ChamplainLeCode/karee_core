@@ -2,6 +2,7 @@
     "title": "Bonjour Le Monde",
     "menu.constants": "Constantes",
     "menu.controllers": "Controleurs",
+    "menu.modules": "Modules",
     "menu.errors": "Erreurs",
     "menu.resources": "Ressources",
     "menu.routage": "Routage",
@@ -11,7 +12,7 @@
     "menu.scanner": "Lire le qr",
     "menu.badge.new": "neuf",
     "welcome.message": "Bienvenu Développeur ${username}",
-    "welcome.message1": "Heureux que vous fassiez partie de la Communité",
+    "welcome.message1": "Heureux que vous fassiez partie de la Communauté",
     "welcome.message2": "Les nouvelles fonctionnalités sont disponibles sur la barre de menu",
     "eg": "Exemple:  \n",
     "karee.module.constant.title": "KAREE ET LES CONSTANTES ",
@@ -49,5 +50,10 @@
     "karee.module.screen.stfs.title": "Les StatefulScreen",
     "karee.module.screen.stfs.detail":"Ce type d'écran hérite des StatefulWidget et a les mêmes propriétes que les StatelessScreen.",
     "karee.module.service.title": "KAREE ET LES SERVICES ",
-    "karee.module.service.details": "Les services dans Karee, un nouveau concept qui désigne une classe contenant de la logique métier, et ayant la propriété d'être injectable et dans la quelle on peut injecter d'autres services ou propriétés sans se soucier du cycle de dépendance. Les services sont utilisés pour fournir des données aux controllers ou à d'autres services."
+    "karee.module.service.details": "Les services dans Karee, un nouveau concept qui désigne une classe contenant de la logique métier, et ayant la propriété d'être injectable et dans la quelle on peut injecter d'autres services ou propriétés sans se soucier du cycle de dépendance. Les services sont utilisés pour fournir des données aux controllers ou à d'autres services.",
+    "karee.module.module.title": "KAREE ET LES MODULES",
+    "karee.module.module.details": "Un module karee est un projet Karee, qui se greffe au projet principal, et qui contient sa propre unité fonctionnelle. Celui-ci partage le même système de navigation (Routeur). \nVous pouvez désormais organiser votre projet Karee en modules, celui-ci devient plus extensible et l'intégration est simple, vous pouvez en deux lignes de code partager les modules entres vos différentes applications.",
+    "karee.module.module.resource.of": "Cette fonction est utilisée pour obtenir le nom du package par type de module. Lors du chargement d'un actif, nous pouvons optionnellement spécifier le nom du package à partir duquel nous voulons récupérer l'actif. Nous ne pouvons pas obtenir un actif du paquet actuel avec une valeur non nulle de cette propriété, même si c'est le nom du paquet actuel. L'exécution du projet Karee en mode application, signifie que le rootBundle fait référence à l'application actuelle, et que les ressources du module doivent être chargées avec la valeur du nom du paquet. Pour permettre l'exécution d'un module sans obtenir une erreur lors du chargement des ressources des actifs, nous devons connaître le mode d'exécution.",
+    "karee.module.module.widget.of": "Cette fonction est utilisée pour déterminer si le widget sera affiché ou non en fonction du mode d'exécution.",
+    "karee.module.module.load": "Fonction utilisée pour inscrire notre module dans Karee. Cela ne signifie pas que le module sera chargé immédiatement, il sera chargé en même temps que l'application racine si l'option [KareeModule.startWithRoot] est définie à true, sinon il sera chargé au moment voulu."
 }

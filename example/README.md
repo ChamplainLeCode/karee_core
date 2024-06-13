@@ -1,32 +1,16 @@
 # example
 
-Hi! My flutter application used Karee library
+Hi! My flutter application is based on Karee library
 
 ## Getting Started
 
+This project is a starting point for a Flutter application.
 
-- ### Setup Flutter Evironment
-    [How to Setup Flutter](https://flutter.dev)
+A few resources to get you started if this is your first Flutter project:
 
-- ### install Karee-CLI
-  ```bash
-      npm install -g karee
-  ```
-- ### Clone the main repo
-    ```bash
-        git clone "https://github.com/ChamplainLeCode/karee"
-        
-        cd karee/example
-    ```
-- ### How to run
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-  To run this project in development mode, you should run karee code generator tool, then use you favorite IDE to run flutter project, or simply run **flutter run** command
-  to run **Karee code generator** use 
-    ```bash
-      karee source
-    ```
-
-  alternatively you can use flutter command to run code generator
-    ```bash
-    flutter clean && flutter pub get && flutter packages pub run build_runner watch --delete-conflicting-outputs
-    ```
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.

@@ -13,7 +13,7 @@ import 'components/dashboard_side_menu.dart';
 
 /// Generated Karee Screen
 /// @email champlainmarius20@gmail.com
-/// @github ChamplainLeCode
+/// @github [ChamplainLeCode](https://github.com/ChamplainLeCode)
 ///
 ///
 ///
@@ -54,9 +54,12 @@ class _HomeDashboardScreenState extends ScreenState<HomeDashBoardScreen> {
               child: Column(children: [
             if (!Utils.isMobileView) DashboardAppBarTool(),
             Expanded(
-                child: RouterWidget(
-                    name: #dashboardRouter,
-                    initial: DashboardKareePresentation())),
+                child: SingleChildScrollView(
+                    padding: EdgeInsets.all(30),
+                    controller: ScrollController(),
+                    child: RouterWidget(
+                        name: #dashboardRouter,
+                        initial: DashboardKareePresentation()))),
             DashboardFooter()
           ]))
         ]));

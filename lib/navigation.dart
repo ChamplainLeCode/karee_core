@@ -9,6 +9,7 @@
 /// - screen
 library karee.core.navigation;
 
-export 'src/routes/library.dart' show KareeRouter, Route, RouteMode;
+export 'src/routes/library.dart'
+    show KareeRouter, Route, RouteMode, ActivationRouteContext, RouteActivation;
 
 export 'src/screens/library.dart' show screen;

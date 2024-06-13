@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:karee/widgets.dart';
 
-class CongratCard extends StatelessWidget {
+class CongratCard extends StatelessComponent {
   @override
-  Widget build(BuildContext context) {
+  Widget builder(BuildContext context) {
     return Container(
       height: 200,
-      width: MediaQuery.of(context).size.width,
+      width: screenSize.width,
       margin: EdgeInsets.only(left: 50, right: 50),
       child: Card(
         elevation: 10,

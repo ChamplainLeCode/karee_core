@@ -29,9 +29,10 @@ abstract class StatelessScreen extends StatelessWidget {
   ///
   BuildContext get context => KareeRouter.currentContext!;
 
-  @mustCallSuper
+  /// Constructor for [StatelessScreen]
   StatelessScreen({Key? key}) : super(key: key);
 
+  /// see [build]
   @protected
   Widget builder(BuildContext context);
 
@@ -51,7 +52,7 @@ abstract class StatelessScreen extends StatelessWidget {
 ///
 @immutable
 abstract class StatelessComponent extends StatelessWidget {
-  @mustCallSuper
+  /// Constructor for [StatelessComponent]
   StatelessComponent({Key? key}) : super(key: key);
 
   ///
@@ -77,6 +78,7 @@ abstract class StatelessComponent extends StatelessWidget {
   ///
   BuildContext get context => KareeRouter.currentContext!;
 
+  /// see [build]
   @protected
   Widget builder(BuildContext context);
 
@@ -94,7 +96,7 @@ abstract class StatelessComponent extends StatelessWidget {
 ///
 @immutable
 abstract class StatefulComponent extends StatefulWidget {
-  @mustCallSuper
+  /// Constructor for [StatefulComponent]
   StatefulComponent({Key? key}) : super(key: key);
 
   @override
@@ -126,6 +128,7 @@ abstract class ComponentState<T extends StatefulComponent> extends State<T> {
     return builder(context);
   }
 
+  /// Function used to update the widget with [setState]
   void update() => setState(() {});
 }
 
@@ -134,7 +137,7 @@ abstract class ComponentState<T extends StatefulComponent> extends State<T> {
 ///
 @immutable
 abstract class StatefulScreen extends StatefulWidget {
-  @mustCallSuper
+  /// Constructor for [StatefulScreen]
   StatefulScreen({Key? key}) : super(key: key);
 
   @override
@@ -158,6 +161,7 @@ abstract class ScreenState<T extends StatefulScreen> extends State<T> {
   @protected
   Size get screenSize => MediaQuery.of(context).size;
 
+  /// see [build]
   @protected
   Widget builder(BuildContext context);
 

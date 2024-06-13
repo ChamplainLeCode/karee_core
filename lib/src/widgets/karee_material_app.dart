@@ -1,5 +1,3 @@
-import 'dart:io' show Platform;
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart'
     show
@@ -152,15 +150,16 @@ class KareeMaterialApp extends StatelessWidget {
       });
     }, test: (exception) => exception is TranslationFileNotExists);
 
-    if (!Platform.environment.containsKey('FLUTTER_TEST')) {
-      ErrorWidget.builder = (FlutterErrorDetails detail) {
-        return KareeRouterErrorWidget(
-            detail.summary.name,
-            detail.stack,
-            KareeErrorCode.generalError,
-            detail.context!.getChildren().map((e) => e.name ?? '').toList());
-      };
-    }
+    // uncomment for testing
+    // if (!Platform.environment.containsKey('FLUTTER_TEST')) {
+    ErrorWidget.builder = (FlutterErrorDetails detail) {
+      return KareeRouterErrorWidget(
+          detail.summary.name,
+          detail.stack,
+          KareeErrorCode.generalError,
+          detail.context!.getChildren().map((e) => e.name ?? '').toList());
+    };
+    // }
   }
 
   @override

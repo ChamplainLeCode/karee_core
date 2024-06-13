@@ -77,6 +77,18 @@ enum RouteMode {
   NONE
 }
 
+/// Context of router when handling route with an activation function.
+class ActivationRouteContext {
+  /// Pameter sent to the route.
+  dynamic parameters;
+
+  /// The name of the route.
+  String routeName;
+
+  /// Constructor for [ActivationRouteContext]
+  ActivationRouteContext(this.routeName, [this.parameters]);
+}
+
 ///
 /// RouteDirection: Not yet implemented, it will be used as the screen entry
 /// direction during navigation.
@@ -84,7 +96,7 @@ enum RouteMode {
 ///
 // enum RouteDirection { LEFT_TO_RIGHT, RIGHT_TO_LEFT, UP_TO_DOWN, DOWN_TO_UP }
 
-typedef RouteActivation = bool Function();
+typedef RouteActivation = bool Function(ActivationRouteContext ctx);
 
 ///
 /// [_RouteEntry]: represents record use to subscribe the path in
@@ -156,7 +168,7 @@ class Route {
   /// don't specify the activation for each route, in default case, we
   /// allow execution through this function.
   ///
-  static bool defaultRouteActivation() => true;
+  static RouteActivation get defaultRouteActivation => (ctx) => true;
 
   ///
   /// This function is used to register your application in Karee Router module.
@@ -168,12 +180,13 @@ class Route {
   ///
   /// [canActivated] is the route guard, use to allow the request to access to
   /// the desired resource.
-  static void on(String path, dynamic action,
-      {RouteActivation canActivated = defaultRouteActivation}) {
+  static void on(String path, dynamic action, {RouteActivation? canActivated}) {
     assert(action != null && action.toString().isNotEmpty);
     assert(path.isNotEmpty);
 
-    var routeEntry = _RouteEntry(path, action, canActivated);
+    final canActivateRoute = canActivated ?? defaultRouteActivation;
+
+    var routeEntry = _RouteEntry(path, action, canActivateRoute);
 
     if (path.contains(_pathVariableRegExp)) {
       var meta = _ParameterizedRoute(routeEntry, []);
@@ -186,10 +199,10 @@ class Route {
       _routeMap[path] = routeEntry;
     }
     // routeMap[route] = action;
-    if (canActivated != defaultRouteActivation) {
-      var routes = _routeActivationMap[canActivated] ?? <String>[];
+    if (canActivateRoute != defaultRouteActivation) {
+      var routes = _routeActivationMap[canActivateRoute] ?? <String>[];
       routes.add(path);
-      _routeActivationMap[canActivated] = routes;
+      _routeActivationMap[canActivateRoute] = routes;
     }
   }
 }
@@ -309,24 +322,27 @@ void doInternalRouting(Symbol routerName, dynamic screenName, dynamic param) {
 /// `KareeRouter.goBack( context )`
 ///
 class KareeRouter {
-  static final GlobalKey<NavigatorState> _navigatorKey =
-      GlobalKey<NavigatorState>();
+  static GlobalKey<NavigatorState>? _navigatorKey;
   static BuildContext? currentContext;
   static String? _currentRoute;
   static Map<String, String>? _pathVariables;
   static dynamic _lastArguments;
   static String? screenName;
-  static GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
+  static GlobalKey<NavigatorState> get navigatorKey =>
+      _navigatorKey ?? (_navigatorKey = GlobalKey<NavigatorState>());
   static String? get currentRoute => _currentRoute;
   static Map<String, String>? get pathVariables => _pathVariables;
 
   static dynamic goto(String routeName, {dynamic parameter}) {
     assert(routeName.isNotEmpty);
 
+    final activationRouteContext = ActivationRouteContext(routeName, parameter);
+
+    /// Looking for route activation with routeName exact matching
     var canActivatedEntry = Route._routeActivationMap.entries.firstWhere(
         (entry) => entry.value.contains(routeName),
         orElse: () => MapEntry(Route.defaultRouteActivation, []));
-    if (!canActivatedEntry.key()) {
+    if (!Function.apply(canActivatedEntry.key, [activationRouteContext])) {
       /// Route Guard refused access to this routes.
       return;
     }
@@ -342,7 +358,9 @@ class KareeRouter {
     /// then we are sure that the _route entry is exact match of current
     /// routeName or generic for (route with parameter) of routeName,
     /// then we apply routeGuard
-    if (!((routeEntry?.activation ?? Route.defaultRouteActivation)())) {
+    if (!(Function.apply(
+        (routeEntry?.activation ?? Route.defaultRouteActivation),
+        [activationRouteContext]))) {
       /// Route Guard refused access to this routes
       return;
     }
@@ -405,7 +423,7 @@ class KareeRouter {
   ///
   /// Function used to get the specific action from a path route.
   ///
-  /// This function also setup **KareeRouter.pathVariables** value when the path
+  /// This function also setup **[KareeRouter.pathVariables]** value when the path
   /// represented by this route contains url parameters.
   ///
   static _RouteEntry? findActionFor(String ro) {
@@ -415,8 +433,10 @@ class KareeRouter {
     if (routeEntry.value == null) {
       MapEntry<String, _ParameterizedRoute> arg = Route._routeWithParams.entries
           .firstWhere((entryParam) => RegExp(entryParam.key).hasMatch(ro),
-              orElse: () => MapEntry('',
-                  _ParameterizedRoute(_RouteEntry('', null, () => false), [])));
+              orElse: () => MapEntry(
+                  '',
+                  _ParameterizedRoute(
+                      _RouteEntry('', null, (_) => false), [])));
       if (arg.value.action != null) {
         var pathVar = RegExp(arg.key)
             .allMatches(ro)
@@ -512,7 +532,7 @@ class KareeRouter {
             .firstWhere((routeItem) => routeItem[#initial] ?? false)[#screen]
             ?.call();
       } else {
-        return  firstRoute.action();
+        return firstRoute.action();
       }
     } catch (e, st) {
       return KareeRouterErrorWidget(

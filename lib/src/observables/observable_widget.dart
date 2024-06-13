@@ -29,7 +29,7 @@ class Observer<T> extends _ObservableElement<T> {
   ///
   /// See also [Observer.withProviders]
   static _OfWidgetBuilder<E> on<E>(
-      {dynamic tag, required _OfBuilderWithState<E> builder}) {
+      {dynamic tag = #base, required _OfBuilderWithState<E> builder}) {
     return _OfWidgetBuilder<E>(
         of: PersistentContext.getObsWithTag<E>(tag), child: builder);
   }
@@ -69,11 +69,11 @@ class Observer<T> extends _ObservableElement<T> {
   ///
   /// ### Parameters
   ///
-  /// **of**: Master observable to bind with this observer.
+  /// **[of]**: Master observable to bind with this observer.
   ///
-  /// **child**: Widget builder of this observer.
+  /// **[child]**: Widget builder of this observer.
   ///
-  /// **slaves**: Additional observables that should be bound to this observer.
+  /// **[slaves]**: Additional observables that should be bound to this observer.
   /// This parameter is optional.
   ///
   /// ### Usage
@@ -95,9 +95,11 @@ class Observer<T> extends _ObservableElement<T> {
   /// See also [Observer.on]
   Observer(
       {required Of<T> of,
-      required _OfBuilder<T> child,
+      @Deprecated("Replaced by 'builder'") _OfBuilder<T>? child,
+      _OfBuilder<T>? builder,
       List<Of> slaves = const []})
-      : super(of, child, slaves);
+      : assert(builder != null || child != null),
+        super(of, (builder ?? child)!, slaves);
 
   @override
   _OfWidgetManager<T> createState() => _OfWidgetManager<T>();
@@ -146,6 +148,7 @@ class _OfWidgetBuilderStateManager<E> extends _ObservableStateWithObs<E> {
   }
 }
 
+/// Class used internally to Build [Observer] widget with observable to persist.
 class _OfWidgetProvider<T> extends StatelessComponent {
   /// The widget list of observables.
   final List<Of<T>> obs;
@@ -236,6 +239,7 @@ abstract class _ObservableState<E>
   }
 }
 
+/// Base class used as Statee for [Observer].
 abstract class _ObservableElementWithState<E> extends StatefulComponent {
   /// The object Master observable.
   late final Of<E> of;

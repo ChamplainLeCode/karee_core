@@ -4,7 +4,7 @@ import 'package:karee/widgets.dart';
 /*
  * @Author Champlain Marius Bakop
  * @email champlainmarius20@gmail.com
- * @github ChamplainLeCode
+ * @github [ChamplainLeCode](https://github.com/ChamplainLeCode)
  * 
  */
 class IconBadge extends StatelessComponent {

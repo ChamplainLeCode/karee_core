@@ -1,5 +1,11 @@
-include: package:lints/recommended.yaml
+include: package:flutter_lints/flutter.yaml
 
-lints:
+linter: 
   rules:
-    constant_identifier_names: false
+    prefer_const_literals_to_create_immutables: false
+    prefer_const_constructors: false
+    use_key_in_widget_constructors: false
+    prefer_const_constructors_in_immutables: false
+    avoid_returning_null_for_void: true
+    avoid_print: true
+    library_private_types_in_public_api: false

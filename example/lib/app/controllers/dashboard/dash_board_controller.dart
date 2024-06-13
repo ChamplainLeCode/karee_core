@@ -1,3 +1,5 @@
+import '../../screens/dashboard/dashboard_module_screen.dart';
+
 import '../../screens/dashboard/dashboard_resources_screen.dart';
 import '../../screens/dashboard/dashboard_routage_screen.dart';
 import '../../screens/dashboard/dashboard_screen_screen.dart';
@@ -15,6 +17,9 @@ import '../../services/user_service.dart';
 /// `DashBoard` is set as Controller
 @Controller
 class DashBoardController {
+  static DashBoardController get instance =>
+      KareeInjector.instance<DashBoardController>()!;
+
   @Autowired
   late UserService userService;
 
@@ -29,6 +34,9 @@ class DashBoardController {
         break;
       case 'controllers':
         controllers();
+        break;
+      case 'modules':
+        modules();
         break;
       case 'resources':
         resources();
@@ -52,6 +60,11 @@ class DashBoardController {
 
   void controllers() {
     screen(DashboardControllersScreen(), RouteMode.INTERNAL,
+        routerName: #dashboardRouter);
+  }
+
+  void modules() {
+    screen(DashboardModuleScreen(), RouteMode.INTERNAL,
         routerName: #dashboardRouter);
   }
 

@@ -1,3 +1,5 @@
+import '../../../../resources/dictionary.dart';
+
 import '../../../utils/style.dart';
 import '../../../utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -44,8 +46,7 @@ class _DashboardSideMenuState extends ComponentState<DashboardSideMenu> {
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                          image: NetworkImage(
-                              'https://www.gravatar.com/avatar/db2846ed0959748797a7fa5839ce254f')))),
+                          image: AssetImage('assets/images/profile.png')))),
               title: Text(
                 'Champlain Marius',
                 style: TextStyle(color: Style.whiteText),
@@ -73,7 +74,7 @@ class _DashboardSideMenuState extends ComponentState<DashboardSideMenu> {
             ),
             Observer(
               of: selectedIndexObs!,
-              child: (ctx) => Container(
+              builder: (ctx) => Container(
                   decoration: selectedIndexObs!.value == 1
                       ? BoxDecoration(
                           border: Border(
@@ -86,7 +87,7 @@ class _DashboardSideMenuState extends ComponentState<DashboardSideMenu> {
                     leading:
                         Icon(Icons.saved_search, color: Style.whiteBackground),
                     title: Text(
-                      'menu.constants'.translate(),
+                      Dictionary.menuConstants.translate(),
                       style: TextStyle(color: Style.whiteBackground),
                     ),
                     dense: true,
@@ -102,7 +103,7 @@ class _DashboardSideMenuState extends ComponentState<DashboardSideMenu> {
             ),
             Observer(
                 of: selectedIndexObs!,
-                child: (ctx) => Container(
+                builder: (ctx) => Container(
                     decoration: selectedIndexObs!.value == 2
                         ? BoxDecoration(
                             border: Border(
@@ -115,7 +116,7 @@ class _DashboardSideMenuState extends ComponentState<DashboardSideMenu> {
                       leading: Icon(Icons.construction_outlined,
                           color: Style.whiteBackground),
                       title: Text(
-                        'menu.controllers'.translate(),
+                        Dictionary.menuControllers.translate(),
                         style: TextStyle(color: Style.whiteBackground),
                       ),
                       dense: true,
@@ -130,8 +131,36 @@ class _DashboardSideMenuState extends ComponentState<DashboardSideMenu> {
                     ))),
             Observer(
                 of: selectedIndexObs!,
-                child: (ctx) => Container(
+                builder: (ctx) => Container(
                     decoration: selectedIndexObs!.value == 3
+                        ? BoxDecoration(
+                            border: Border(
+                                left: BorderSide(
+                                    color: Style.dashboardSelectedMenuBorder,
+                                    width: 5)),
+                            color: Style.dashboardSelectedMenu)
+                        : null,
+                    child: ListTile(
+                      leading: Icon(Icons.view_module_rounded,
+                          color: Style.whiteBackground),
+                      title: Text(
+                        Dictionary.menuModules.translate(),
+                        style: TextStyle(color: Style.whiteBackground),
+                      ),
+                      dense: true,
+                      focusColor: Color(0xff1a2226),
+                      trailing: BadgeCard(
+                          color: Style.primaryColor, label: '1', fontSize: 8),
+                      onTap: () {
+                        closeDrawer();
+                        selectedIndexObs!.value = 3;
+                        loadMenu();
+                      },
+                    ))),
+            Observer(
+                of: selectedIndexObs!,
+                builder: (ctx) => Container(
+                    decoration: selectedIndexObs!.value == 4
                         ? BoxDecoration(
                             border: Border(
                                 left: BorderSide(
@@ -143,7 +172,7 @@ class _DashboardSideMenuState extends ComponentState<DashboardSideMenu> {
                       leading: Icon(Icons.electrical_services_rounded,
                           color: Style.whiteBackground),
                       title: Text(
-                        'menu.resources'.translate(),
+                        Dictionary.menuResources.translate(),
                         style: TextStyle(color: Style.whiteBackground),
                       ),
                       dense: true,
@@ -152,14 +181,14 @@ class _DashboardSideMenuState extends ComponentState<DashboardSideMenu> {
                           color: Style.infoColor, label: '2', fontSize: 8),
                       onTap: () {
                         closeDrawer();
-                        selectedIndexObs!.value = 3;
+                        selectedIndexObs!.value = 4;
                         loadMenu();
                       },
                     ))),
             Observer(
                 of: selectedIndexObs!,
-                child: (ctx) => Container(
-                    decoration: selectedIndexObs!.value == 4
+                builder: (ctx) => Container(
+                    decoration: selectedIndexObs!.value == 5
                         ? BoxDecoration(
                             border: Border(
                                 left: BorderSide(
@@ -171,7 +200,7 @@ class _DashboardSideMenuState extends ComponentState<DashboardSideMenu> {
                       leading: Icon(Icons.navigation_outlined,
                           color: Style.whiteBackground),
                       title: Text(
-                        'menu.routage'.translate(),
+                        Dictionary.menuRoutage.translate(),
                         style: TextStyle(color: Style.whiteBackground),
                       ),
                       dense: true,
@@ -180,14 +209,14 @@ class _DashboardSideMenuState extends ComponentState<DashboardSideMenu> {
                           color: Style.warningColor, label: '2', fontSize: 8),
                       onTap: () {
                         closeDrawer();
-                        selectedIndexObs!.value = 4;
+                        selectedIndexObs!.value = 5;
                         loadMenu();
                       },
                     ))),
             Observer(
                 of: selectedIndexObs!,
-                child: (ctx) => Container(
-                    decoration: selectedIndexObs!.value == 5
+                builder: (ctx) => Container(
+                    decoration: selectedIndexObs!.value == 6
                         ? BoxDecoration(
                             border: Border(
                                 left: BorderSide(
@@ -199,25 +228,25 @@ class _DashboardSideMenuState extends ComponentState<DashboardSideMenu> {
                       leading: Icon(Icons.miscellaneous_services_outlined,
                           color: Style.whiteBackground),
                       title: Text(
-                        'menu.services'.translate(),
+                        Dictionary.menuServices.translate(),
                         style: TextStyle(color: Style.whiteBackground),
                       ),
                       dense: true,
                       focusColor: Color(0xff1a2226),
                       trailing: BadgeCard(
                           color: Style.successColor,
-                          label: 'menu.badge.new'.translate(),
+                          label: Dictionary.menuBadgeNew.translate(),
                           fontSize: 8),
                       onTap: () {
                         closeDrawer();
-                        selectedIndexObs!.value = 5;
+                        selectedIndexObs!.value = 6;
                         loadMenu();
                       },
                     ))),
             Observer(
                 of: selectedIndexObs!,
-                child: (ctx) => Container(
-                    decoration: selectedIndexObs!.value == 6
+                builder: (ctx) => Container(
+                    decoration: selectedIndexObs!.value == 7
                         ? BoxDecoration(
                             border: Border(
                                 left: BorderSide(
@@ -229,22 +258,21 @@ class _DashboardSideMenuState extends ComponentState<DashboardSideMenu> {
                       leading:
                           Icon(Icons.fit_screen, color: Style.whiteBackground),
                       title: Text(
-                        'menu.screens'.translate(),
+                        Dictionary.menuScreens.translate(),
                         style: TextStyle(color: Style.whiteBackground),
                       ),
                       dense: true,
                       focusColor: Color(0xff1a2226),
                       trailing: BadgeCard(
                           color: Style.successColor,
-                          label: 'menu.badge.new'.translate(),
+                          label: Dictionary.menuBadgeNew.translate(),
                           fontSize: 8),
                       onTap: () {
                         closeDrawer();
-                        selectedIndexObs!.value = 6;
+                        selectedIndexObs!.value = 7;
                         loadMenu();
                       },
                     ))),
-            // Spacer(),
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               ElevatedButton(
                 onPressed: () {
@@ -292,15 +320,18 @@ class _DashboardSideMenuState extends ComponentState<DashboardSideMenu> {
         KareeRouter.goto('/dashboard/controllers');
         break;
       case 3:
-        KareeRouter.goto('/dashboard/resources');
+        KareeRouter.goto('/dashboard/modules');
         break;
       case 4:
-        KareeRouter.goto('/dashboard/routage');
+        KareeRouter.goto('/dashboard/resources');
         break;
       case 5:
-        KareeRouter.goto('/dashboard/services');
+        KareeRouter.goto('/dashboard/routage');
         break;
       case 6:
+        KareeRouter.goto('/dashboard/services');
+        break;
+      case 7:
         KareeRouter.goto('/dashboard/screen');
         break;
     }
