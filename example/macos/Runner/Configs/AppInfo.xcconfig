@@ -11,4 +11,4 @@ PRODUCT_NAME = example
 PRODUCT_BUNDLE_IDENTIFIER = com.karee.app.example.example
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2024 com.karee.app.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2025 com.karee.app.example. All rights reserved.

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:karee/widgets.dart';
 
 class DashboardFooter extends StatelessComponent {
+  DashboardFooter({super.key});
+
   @override
   Widget builder(BuildContext context) {
     return Container(

@@ -22,6 +22,8 @@ void main() async {
 class MyKareeApp extends StatelessWidget {
   final sideMenuSelected = Of.tag(0, #sideMenu);
 
+  MyKareeApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Don't change this widget
@@ -51,6 +53,6 @@ class MyKareeApp extends StatelessWidget {
         // supportedLocales: [Locale('en'), Locale('fr')],
         // This represents your app's title
         title: 'Karee Sample App',
-        debugShowCheckedModeBanner: true);
+        debugShowCheckedModeBanner: false);
   }
 }

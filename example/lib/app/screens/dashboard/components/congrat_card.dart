@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:karee/widgets.dart';
 
 class CongratCard extends StatelessComponent {
+  CongratCard({super.key});
+
   @override
   Widget builder(BuildContext context) {
     return Container(

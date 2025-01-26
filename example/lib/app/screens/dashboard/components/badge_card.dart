@@ -7,8 +7,9 @@ class BadgeCard extends StatelessWidget {
   final String label;
   final double fontSize;
 
-  BadgeCard(
-      {this.width = 24,
+  const BadgeCard(
+      {super.key,
+      this.width = 24,
       this.height = 15,
       required this.color,
       required this.label,

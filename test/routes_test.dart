@@ -111,7 +111,5 @@ void main() {
 
       verify(routeActivationMiddleware.getActivationRoute());
     });
-
-    test('ContactListPresenter test', () async {});
   });
 }

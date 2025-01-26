@@ -1,4 +1,4 @@
-## v2.2.3+5
+## v2.2.4
   * Plane: Karee framework fix navigation.
     * Exporting RouteActivation and ActivationRouteContext.
 ## v2.2.3+4

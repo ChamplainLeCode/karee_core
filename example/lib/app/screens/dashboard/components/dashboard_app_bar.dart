@@ -8,16 +8,16 @@ import '../../../utils/utils.dart';
 import 'dashboard_app_bar_tool.dart';
 
 class DashboardAppBar extends StatefulComponent implements PreferredSizeWidget {
-  DashboardAppBar();
+  DashboardAppBar({super.key});
 
   @override
-  _DashboardAppBarState createState() => _DashboardAppBarState();
+  DashboardAppBarState createState() => DashboardAppBarState();
 
   @override
   Size get preferredSize => Size.fromHeight(Utils.isMobileView ? 100 : 50);
 }
 
-class _DashboardAppBarState extends ComponentState<DashboardAppBar> {
+class DashboardAppBarState extends ComponentState<DashboardAppBar> {
   @override
   Widget builder(BuildContext context) {
     return Container(

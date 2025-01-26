@@ -20,11 +20,13 @@ import 'components/dashboard_side_menu.dart';
 /// `HomeDashBoardScreen` is set as Screen with name `dashboard`
 @Screen('dashboard')
 class HomeDashBoardScreen extends StatefulScreen {
+  HomeDashBoardScreen({super.key});
+
   @override
-  _HomeDashboardScreenState createState() => _HomeDashboardScreenState();
+  HomeDashboardScreenState createState() => HomeDashboardScreenState();
 }
 
-class _HomeDashboardScreenState extends ScreenState<HomeDashBoardScreen> {
+class HomeDashboardScreenState extends ScreenState<HomeDashBoardScreen> {
   Of<int>? selectedIndexObs;
 
   int get minWidth => 600;

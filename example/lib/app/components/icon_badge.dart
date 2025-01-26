@@ -17,7 +17,8 @@ class IconBadge extends StatelessComponent {
   final Color badgeColor;
 
   IconBadge(
-      {this.size = 50,
+      {super.key,
+      this.size = 50,
       this.number = 0,
       required this.icon,
       required this.callBack,

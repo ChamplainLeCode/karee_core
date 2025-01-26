@@ -6,6 +6,8 @@ import 'package:karee/internationalization.dart';
 import 'package:karee/widgets.dart';
 
 class DashboardScreenTabScreen extends RoutableWidget {
+  DashboardScreenTabScreen({super.key});
+
   @override
   Widget builder(BuildContext context, parameter) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -34,7 +36,7 @@ class DashboardScreenTabScreen extends RoutableWidget {
             Dictionary.kareeModuleScreenStlsDetail.translate(),
             textAlign: TextAlign.justify,
             style: Style.moduleItemDetail,
-            textScaleFactor: 1.1,
+            textScaler: TextScaler.linear(1.1),
           )),
       Text(Dictionary.eg.translate()),
       Container(
@@ -58,7 +60,7 @@ class DashboardScreenTabScreen extends RoutableWidget {
               "    ${Dictionary.kareeModuleScreenStfsDetail.translate()}",
               textAlign: TextAlign.justify,
               style: Style.moduleItemDetail,
-              textScaleFactor: 1.1,
+              textScaler: TextScaler.linear(1.1),
             ),
             Container(
                 decoration: BoxDecoration(

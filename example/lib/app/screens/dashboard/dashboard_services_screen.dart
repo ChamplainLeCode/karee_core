@@ -9,6 +9,8 @@ import 'package:karee/internationalization.dart';
 ///
 /// `DashboardServicesScreen` is set as Screen with name `dashboard_service`
 class DashboardServicesScreen extends RoutableWidget {
+  DashboardServicesScreen({super.key});
+
   @override
   Widget builder(BuildContext context, parameter) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

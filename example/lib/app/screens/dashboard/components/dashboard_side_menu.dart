@@ -11,11 +11,13 @@ import 'package:karee/navigation.dart';
 import 'badge_card.dart';
 
 class DashboardSideMenu extends StatefulComponent {
+  DashboardSideMenu({super.key});
+
   @override
-  _DashboardSideMenuState createState() => _DashboardSideMenuState();
+  DashboardSideMenuState createState() => DashboardSideMenuState();
 }
 
-class _DashboardSideMenuState extends ComponentState<DashboardSideMenu> {
+class DashboardSideMenuState extends ComponentState<DashboardSideMenu> {
   Of<int>? selectedIndexObs;
 
   @override

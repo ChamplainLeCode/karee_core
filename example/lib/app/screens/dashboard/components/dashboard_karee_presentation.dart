@@ -6,6 +6,8 @@ import 'package:karee/widgets.dart';
 import 'package:karee/internationalization.dart';
 
 class DashboardKareePresentation extends StatelessComponent {
+  DashboardKareePresentation({super.key});
+
   @override
   Widget builder(BuildContext context) {
     return Column(children: [

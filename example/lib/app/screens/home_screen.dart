@@ -14,20 +14,20 @@ import 'package:url_launcher/url_launcher.dart' as launcher;
 
 @Screen('home', isInitial: true)
 class HomeScreen extends StatefulScreen {
+  HomeScreen({super.key});
+
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends ScreenState<HomeScreen> {
+class HomeScreenState extends ScreenState<HomeScreen> {
   @override
   Widget builder(BuildContext context) {
-    return WillPopScope(
-        onWillPop: () async => false,
+    return PopScope(
         child: Scaffold(
             body: Container(
                 alignment: Alignment.center,
-                color: Style
-                    .dashboardSelectedMenu, // Style.primaryColor.withOpacity(0.125),
+                color: Style.dashboardSelectedMenu,
                 padding: EdgeInsets.only(left: 10, right: 10),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
@@ -48,7 +48,7 @@ class _HomeScreenState extends ScreenState<HomeScreen> {
                       ),
                       SizedBox(height: 20),
                       Text(
-                        'version v2.2.1',
+                        'version v2.2.0',
                         style: TextStyle(
                             fontSize: 20,
                             color: Style.whiteText.withOpacity(0.8),

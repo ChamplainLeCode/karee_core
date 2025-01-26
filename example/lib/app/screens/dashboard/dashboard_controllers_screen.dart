@@ -10,6 +10,8 @@ import 'package:karee/internationalization.dart';
 ///
 /// `DashboardControllersScreen` is set as Screen with name `dashboard_controller`
 class DashboardControllersScreen extends RoutableWidget {
+  DashboardControllersScreen({super.key});
+
   @override
   Widget builder(BuildContext context, parameter) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -39,7 +41,7 @@ class DashboardControllersScreen extends RoutableWidget {
             Dictionary.kareeModuleControllerServiceDetail.translate(),
             textAlign: TextAlign.justify,
             style: Style.moduleItemDetail,
-            textScaleFactor: 1.1,
+            textScaler: TextScaler.linear(1.1),
           )),
       FittedBox(
           child: Row(children: [
@@ -57,7 +59,7 @@ class DashboardControllersScreen extends RoutableWidget {
             Dictionary.kareeModuleControllerVariableDetail.translate(),
             textAlign: TextAlign.justify,
             style: Style.moduleItemDetail,
-            textScaleFactor: 1.1,
+            textScaler: TextScaler.linear(1.1),
           )),
     ]);
   }

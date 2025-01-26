@@ -7,7 +7,7 @@
 /// [StringTranslator.translate] and [StringTranslator.translateWithParams].
 ///
 /// To define you translation dictionary, get open file in
-/// {@PROJECT_DIR@/resources/i18n/locale.json}.
+/// {PROJECT_DIR@/resources/i18n/locale.json}.
 ///
 /// Karee Internationalization also provides a simplest way to change language in
 /// your application. You need to call [KareeInternationalization.changeLanguage]
